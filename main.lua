@@ -36,7 +36,7 @@ function gui.new(title)
 	local UIListLayout= Instance.new("UIListLayout")
 	NewLabel(title, {TextSize = 20, BackgroundTransparency = 0, BorderSizePixel = 1, Size = UDim2.new(1, 0, 0.25, 0)}).Parent = Frame -- titolo della GUI
 	
-	ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+	ScreenGui.Parent = game.CoreGui
 	
 	Frame.BackgroundTransparency = 0
 	Frame.Size = UDim2.new(0, 158, 0, 189)
