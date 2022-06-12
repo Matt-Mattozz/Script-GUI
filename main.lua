@@ -128,7 +128,7 @@ function gui:NewToggle(title, extraButton)
 			if input.KeyCode == extraButton then
 				FireToggle()
 			end
-		end
+		end)
 	end
 end)
 	
