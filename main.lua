@@ -90,7 +90,8 @@ function gui.new(title)
 	return tab
 end
 -- crea un bottone on/off che restituisce una boolvalue
-function gui:NewToggle(title)
+-- si può passare un tasto che può azionare il toggle (in aggiunta al click sulla GUI)
+function gui:NewToggle(title, extraButton)
 	local Label = NewLabel(title, {Name = title.."Label"})
 	local Toggle = NewButton(title, {Name = title.."Toggle"})
 	local BoolValue = Instance.new("BoolValue")
@@ -116,10 +117,21 @@ function gui:NewToggle(title)
 		end	
 	end
 	
-	Toggle.MouseButton1Click:Connect(function()
+	local FireToggle = function()
 		BoolValue.Value = not BoolValue.Value
 		Toggle.Text = BoolValue.Value and "On" or "Off"
-	end)
+	end
+	
+	Toggle.MouseButton1Click:Connect(FireToggle)
+	if extraButton then
+		game:GetService("UserInputService").InputBegan:Connect(function(input, bool)
+			if input.KeyCode == extraButton then
+				FireToggle()
+			end
+		end
+	end
+end)
+	
 	return BoolValue
 end
 
