@@ -134,5 +134,4 @@ function gui:NewToggle(title, extraButton)
 	return BoolValue
 end
 
-
 return gui
