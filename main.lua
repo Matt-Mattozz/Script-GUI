@@ -117,7 +117,7 @@ function gui:NewToggle(title, extraButton)
 		end	
 	end
 	
-	function FireToggle()
+	local function FireToggle()
 		BoolValue.Value = not BoolValue.Value
 		Toggle.Text = BoolValue.Value and "On" or "Off"
 	end
