@@ -145,7 +145,6 @@ end
     - aggiunge alla GUI un Frame contente un TextLabel e un TextButton (titolo e bottone toggle)
     - restituisce un BoolValue contente lo stato del toggle
 ]]
--- si può passare un tasto che può azionare il toggle (in aggiunta al click sulla GUI)
 function GUI:NewToggle(title, extraButton)
 	local Label = NewLabel(title, {Name = title.."Label"})
 	local Toggle = NewButton(title, {Name = title.."Toggle"})
@@ -161,7 +160,7 @@ function GUI:NewToggle(title, extraButton)
 	Toggle.Parent = Frame
 	BoolValue.Parent = Toggle
 	BoolValue.Value = false
-	-- questo parenting è antecedente alle proprietà appositamente! non toccare!
+	-- questo parenting è messo appositamente antecedente alle proprietà! non toccare!
 	Frame.Parent = self.Frame.SubFrame
 	Frame.BackgroundTransparency = 1
 	Frame.Size = UDim2.new(1, 0, 0, 35)
@@ -184,6 +183,27 @@ function GUI:NewToggle(title, extraButton)
 	end
 
 	return BoolValue
+end
+--
+--[[
+    INPUT:
+    - string title : la scritta che compare nel TextLabel
+
+    OUTPUT:
+    -
+
+    COSA FA:
+    - aggiunge alla GUI un Frame contente un TextLabel
+]]
+function GUI:NewLabel(title)
+	local Label = NewLabel(title, {Name = title.."Label"})
+	local Frame = Instance.new("Frame")
+	Label.Size = UDim2.new(1, 0, 1, 0)
+	Label.Parent = Frame
+	Frame.Parent = self.Frame.SubFrame
+	Frame.BackgroundTransparency = 1
+	Frame.Size = UDim2.new(1, 0, 0, 35)
+	Frame.Position = UDim2.new(0, 0, 0, (#self.Frame.SubFrame:GetChildren()-1)*35)
 end
 
 return GUI
